@@ -1,53 +1,60 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.efsavage</groupId>
-	<artifactId>hello-world-war</artifactId>
-	<version>1.0.0</version>
-	<packaging>war</packaging>
-	<name>Hello World Web Application Repository</name>
-	<description>Simplest possible Java Webapp</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<properties>
-		<!-- Version du JDK -->
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
-	</properties>
+    <!-- Informations de base du projet -->
+    <groupId>com.votre.groupe</groupId>
+    <artifactId>mon-projet-java</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging> <!-- Le packaging est défini sur "jar" -->
 
-	<build>
-		<plugins>
-			<!-- Plugin Jetty pour exécuter l'application -->
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>11.0.15</version>
-				<configuration>
-					<scanIntervalSeconds>1</scanIntervalSeconds>
-					<webApp>
-						<contextPath>/</contextPath>
-					</webApp>
-				</configuration>
-			</plugin>
+    <!-- Propriétés du projet -->
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source> <!-- Version Java source -->
+        <maven.compiler.target>1.8</maven.compiler.target> <!-- Version Java cible -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Encodage des fichiers -->
+    </properties>
 
-			<!-- Plugin WAR pour la génération de l'archive WAR -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.4.0</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <!-- Configuration du build -->
+    <build>
+        <plugins>
+            <!-- Plugin pour compiler le code Java -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
 
-	<dependencies>
-		<!-- Ajoutez des dépendances si nécessaire -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+            <!-- Plugin pour créer un JAR exécutable -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- Spécifiez la classe principale ici -->
+                            <mainClass>com.votre.groupe.MainClass</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Dépendances du projet (ajoutez-les si nécessaire) -->
+    <dependencies>
+        <!-- Exemple de dépendance pour JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

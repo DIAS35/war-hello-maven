@@ -8,22 +8,46 @@
 	<name>Hello World Web Application Repository</name>
 	<description>Simplest possible Java Webapp</description>
 
+	<properties>
+		<!-- Version du JDK -->
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
+
 	<build>
 		<plugins>
+			<!-- Plugin Jetty pour exécuter l'application -->
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.5.v20120716</version>
+				<version>11.0.15</version>
 				<configuration>
-					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<scanIntervalSeconds>1</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
 				</configuration>
 			</plugin>
+
+			<!-- Plugin WAR pour la génération de l'archive WAR -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
+				<version>3.4.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<dependencies>
+		<!-- Ajoutez des dépendances si nécessaire -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
